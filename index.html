@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>GJ Joli · Solo para bonitas · Crossbody Collection</title>
+  <meta name="description" content="Crossbody Collection de GJ Joli. Solo para bonitas: todas tienen un lugar aquí.">
+  <link rel="icon" href="assets/monograma.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Crimson+Text:ital,wght@0,400;0,600;1,400&family=Montserrat:wght@300;400;500;600&family=Pinyon+Script&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+  <a class="skip" href="#catalogo">Ir al catálogo</a>
+
+  <header class="site-header">
+    <div class="container bar">
+      <a href="#inicio" class="brand" aria-label="GJ Joli, inicio"><img src="assets/logo-principal.png" alt="GJ Joli"></a>
+      <button class="cart-btn" id="cartOpen" aria-controls="cartDrawer" aria-expanded="false">
+        Carrito <span class="cart-count" id="cartCount">0</span>
+      </button>
+    </div>
+  </header>
+
+  <main id="inicio">
+    <section class="hero">
+      <div class="container hero-grid">
+        <div class="hero-copy">
+          <p class="eyebrow">Nueva colección</p>
+          <h1>Crossbody Collection</h1>
+          <p class="lead">Cada clienta merece sentirse vista, valiosa y parte de algo. Elige tu color, míralo en 3D y pruébalo en tu espacio con realidad aumentada.</p>
+          <a class="btn" href="#catalogo">Ver colección</a>
+        </div>
+        <div class="hero-video">
+          <video autoplay muted loop playsinline preload="metadata" poster="assets/video-poster.jpg" aria-label="Video de la Crossbody Collection">
+            <source src="assets/video.mp4" type="video/mp4">
+          </video>
+        </div>
+      </div>
+    </section>
+
+    <section id="catalogo" class="catalog" aria-label="Colección">
+      <div class="container">
+        <div class="section-head" style="margin-bottom:28px">
+          <p class="eyebrow">Colección</p>
+          <h2>Elige tu color</h2>
+          <p>20 × 14 × 10 cm · Correa crossbody incluida</p>
+        </div>
+      </div>
+      <div class="carousel container" role="region" aria-roledescription="carrusel" aria-label="Bolsos disponibles">
+        <button class="nav prev" id="prev" aria-label="Anterior">‹</button>
+        <div id="track" class="track" tabindex="0"></div>
+        <button class="nav next" id="next" aria-label="Siguiente">›</button>
+      </div>
+      <div id="dots" class="dots"></div>
+    </section>
+
+    <section class="manifesto">
+      <div class="container">
+        <p class="eyebrow">Solo para bonitas</p>
+        <p class="quote">Todas son bonitas. Aquí todas tienen un lugar.</p>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <img src="assets/lema.png" alt="Solo para bonitas">
+      <p>WhatsApp 777 996 9860 · gjjolie.bonitas@gmail.com</p>
+      <p style="margin-top:12px"><a href="admin.html" class="no-print">Acceso interno</a></p>
+    </div>
+  </footer>
+
+  <div class="overlay" id="overlay"></div>
+
+  <aside id="cartDrawer" class="drawer" aria-label="Carrito de compras" aria-hidden="true">
+    <div class="drawer-head">
+      <h2>Tu carrito</h2>
+      <button class="icon-btn" id="cartClose" aria-label="Cerrar carrito">×</button>
+    </div>
+    <div id="cartItems" class="drawer-body"></div>
+    <div class="drawer-foot">
+      <div class="row"><span>Subtotal</span><strong id="cartSubtotal">$0</strong></div>
+      <p class="muted">El envío se calcula en el siguiente paso.</p>
+      <button class="btn btn-block" id="goCheckout" disabled>Continuar pedido</button>
+    </div>
+  </aside>
+
+  <div class="modal" id="checkout" role="dialog" aria-modal="true" aria-labelledby="checkoutTitle" aria-hidden="true">
+    <div class="modal-panel">
+      <div class="modal-head">
+        <div>
+          <p class="eyebrow">Tu pedido</p>
+          <h2 id="checkoutTitle">Datos de entrega</h2>
+        </div>
+        <button class="icon-btn" id="checkoutClose" aria-label="Cerrar">×</button>
+      </div>
+
+      <form id="checkoutForm" novalidate>
+        <div class="form-grid">
+          <div class="field full" style="gap:0">
+            <label class="field" for="f-nombre">Nombre completo</label>
+            <input id="f-nombre" name="nombre" autocomplete="name" aria-describedby="err-nombre">
+            <p class="field-error" id="err-nombre" aria-live="polite"></p>
+          </div>
+          <div>
+            <label class="field" for="f-tel">WhatsApp de contacto</label>
+            <input id="f-tel" name="tel" type="tel" inputmode="tel" autocomplete="tel" placeholder="10 dígitos" aria-describedby="err-tel">
+            <p class="field-error" id="err-tel" aria-live="polite"></p>
+          </div>
+          <div>
+            <label class="field" for="f-colonia">Colonia o lugar</label>
+            <input id="f-colonia" name="colonia" list="placesList" autocomplete="address-level3" aria-describedby="err-colonia">
+            <datalist id="placesList"></datalist>
+            <p class="field-error" id="err-colonia" aria-live="polite"></p>
+          </div>
+          <div class="full" style="display:grid;gap:6px">
+            <div id="zoneNotice" class="notice" aria-live="polite">Escribe tu colonia o lugar para ver el costo de envío.</div>
+          </div>
+          <div>
+            <label class="field" for="f-calle">Calle y número</label>
+            <input id="f-calle" name="calle" autocomplete="street-address" aria-describedby="err-calle">
+            <p class="field-error" id="err-calle" aria-live="polite"></p>
+          </div>
+          <div>
+            <label class="field" for="f-ref">Referencias <span class="muted">(opcional)</span></label>
+            <input id="f-ref" name="ref" placeholder="Casa color, entre calles…">
+          </div>
+          <div>
+            <label class="field" for="f-fecha">Fecha preferida <span class="muted">(opcional)</span></label>
+            <input id="f-fecha" type="date">
+          </div>
+          <div>
+            <label class="field" for="f-horario">Horario</label>
+            <select id="f-horario">
+              <option>Por definir</option><option>9:00–13:00</option><option>13:00–17:00</option><option>17:00–20:00</option>
+            </select>
+          </div>
+          <div>
+            <label class="field" for="f-pago">Forma de pago</label>
+            <select id="f-pago">
+              <option>Transferencia</option><option>Efectivo al entregar</option><option>Tarjeta (confirmar por WhatsApp)</option>
+            </select>
+          </div>
+          <div class="full">
+            <label class="field" for="f-notas">Notas <span class="muted">(opcional)</span></label>
+            <textarea id="f-notas" rows="2"></textarea>
+          </div>
+        </div>
+
+        <div class="summary" style="margin-top:20px">
+          <div id="summaryLines" style="display:grid;gap:6px"></div>
+          <div class="row" style="border-top:1px solid var(--line);padding-top:8px"><span>Subtotal</span><span id="sumSub">$0</span></div>
+          <div class="row"><span>Envío</span><span id="sumFee">Por confirmar</span></div>
+          <div class="row"><strong>Total</strong><strong id="sumTotal">$0</strong></div>
+        </div>
+
+        <div class="checkout-foot">
+          <button class="btn btn-block" type="submit">Enviar pedido por WhatsApp</button>
+          <button class="btn btn-outline btn-block" type="button" id="checkoutBack">Regresar al carrito</button>
+          <p class="muted" style="text-align:center">Se abrirá WhatsApp con tu pedido listo. Lo confirmamos contigo ahí mismo.</p>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <div class="modal" id="viewer" role="dialog" aria-modal="true" aria-labelledby="viewerTitle" aria-hidden="true">
+    <div class="modal-panel viewer-panel">
+      <div class="modal-head">
+        <div><p class="eyebrow">Modelo 3D</p><h2 id="viewerTitle">Bolso <span id="viewerColor"></span></h2></div>
+        <button class="icon-btn" id="viewerClose" aria-label="Cerrar visor">×</button>
+      </div>
+      <model-viewer id="mv" camera-controls auto-rotate touch-action="pan-y" shadow-intensity="1" exposure="1.1"
+        ar ar-modes="webxr scene-viewer quick-look" ar-scale="fixed" interaction-prompt="auto" loading="lazy">
+        <button slot="ar-button" class="btn ar-btn">Ver en mi espacio (RA)</button>
+      </model-viewer>
+      <div id="viewerSwatches" class="swatches" role="group" aria-label="Cambiar color"></div>
+      <p class="muted" style="text-align:center">Arrastra para girar · En tu celular verás el botón de realidad aumentada. Modelo ilustrativo; el asa varía según el modelo.</p>
+      <button class="btn btn-block" id="viewerAdd" style="margin-top:14px">Agregar este color al carrito</button>
+    </div>
+  </div>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+  <script type="module" src="https://cdn.jsdelivr.net/npm/@google/model-viewer@3.5.0/dist/model-viewer.min.js"></script>
+  <script src="js/config.js"></script>
+  <script src="js/store.js"></script>
+  <script src="js/shop.js"></script>
+</body>
+</html>

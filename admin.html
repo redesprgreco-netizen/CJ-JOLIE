@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="robots" content="noindex">
+  <title>Panel interno · GJ Joli</title>
+  <link rel="icon" href="assets/monograma.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Crimson+Text:ital,wght@0,400;0,600;1,400&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+  <section id="login" class="login" aria-labelledby="loginTitle">
+    <img src="assets/monograma.png" alt="" width="64" style="margin:0 auto">
+    <h1 id="loginTitle" style="font-size:28px;text-align:center">Panel interno</h1>
+    <form id="loginForm" novalidate style="display:grid;gap:14px">
+      <label class="field" for="pin">PIN de acceso</label>
+      <input id="pin" type="password" inputmode="numeric" autocomplete="current-password" aria-describedby="loginErr">
+      <p class="field-error" id="loginErr" aria-live="polite"></p>
+      <button class="btn btn-block" type="submit">Entrar</button>
+    </form>
+  </section>
+
+  <div id="app" hidden>
+    <header class="admin-top">
+      <div class="container bar">
+        <div style="display:flex;align-items:center;gap:14px">
+          <img src="assets/monograma.png" alt="" width="36">
+          <strong style="font-family:'Crimson Text',serif;font-size:20px">Panel interno · GJ Joli</strong>
+        </div>
+        <div style="display:flex;gap:8px">
+          <a class="btn btn-outline" href="index.html">Ver tienda</a>
+          <button class="btn btn-outline" id="logout">Salir</button>
+        </div>
+      </div>
+      <nav class="container tabs" aria-label="Secciones">
+        <button class="tab" data-tab="pedidos">Pedidos</button>
+        <button class="tab" data-tab="entregas">Entregas</button>
+        <button class="tab" data-tab="clientes">Clientes</button>
+        <button class="tab" data-tab="zonas">Zonas de entrega</button>
+        <button class="tab" data-tab="respaldo">Respaldo</button>
+      </nav>
+    </header>
+    <main class="container" id="view"></main>
+  </div>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+  <script src="js/config.js"></script>
+  <script src="js/store.js"></script>
+  <script src="js/admin.js"></script>
+</body>
+</html>
